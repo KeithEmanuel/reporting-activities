@@ -21,6 +21,17 @@ namespace ReportingTests
         }
 
         [TestMethod]
+        public void MinimalTypedTest()
+        {
+            InvokeActivity.AddMessage(":)", level: LogLevel.Info);
+            var table = (DataTable)InvokeActivity.OutputReport(minLogLevel: LogLevel.Info, plaintext: false)["DataTable"];
+
+            Assert.AreEqual(table.Rows.Count, 1);
+
+            MessageRepository.Instance.Reset();
+        }
+
+        [TestMethod]
         public void TagFilterTest()
         {
             InvokeActivity.AddMessage(":)", tags: new[] { "face", "positive" }, level: LogLevel.Info);
@@ -94,7 +105,7 @@ namespace ReportingTests
             Assert.AreEqual(allMessages.Select("Message = 'TacoCat'").First()["Palindrome"], true.ToString());
 
             MessageRepository.Instance.Reset();
-
         }
+
     }
 }

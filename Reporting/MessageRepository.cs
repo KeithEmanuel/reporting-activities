@@ -108,7 +108,7 @@ namespace Reporting
             table.Columns.Add("Message", typeof(string));
             table.Columns.Add("TransactionId", typeof(string));
             table.Columns.Add("Tags", typeof(List<string>));
-            table.Columns.Add("ExtendedProperties", typeof(Dictionary<string, string>));
+            table.Columns.Add("ExtendedProperties", typeof(Dictionary<string, object>));
             return table;
         }
 
